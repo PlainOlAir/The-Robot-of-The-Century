@@ -1,7 +1,7 @@
 left_motor = "47260374648549928326927"
 right_motor = "47258887835223006894371"
-leftpull_motor = ""
-rightpull_motor = ""
+leftpull_motor = "47257803039701938059387"
+rightpull_motor = "47252153627919119984829"
 
 def autonomous_setup():
     print("Autonomous mode has started!")
@@ -29,17 +29,12 @@ def teleop_main():
         Robot.set_value(right_motor, "duty_cycle", rightmotor)
     
     if(Gamepad.get_value("button_y") == 1):
-        if(Gamepad.get_value("l_bumper") == 1):
-            lift(slow)
-        else:
-            lift(quicc)
+            lift(0.25)
     elif(Gamepad.get_value("button_a") == 1):
-        if(Gamepad.get_value("l_bumper") == 1):
-            lift(-slow)
-        else:
-            lift(-quicc)
+            lift(-0.25)
+    else:
+        lift(0)
     
-       
         #motors will drive at 0.5 due to speed
     if(Gamepad.get_value("dpad_up") == 1): #dpad up results in robot going forward and so fourth
         drive(slow,slow)
@@ -113,12 +108,3 @@ def Robot_decode():
       n = str(bin(num))
       n = n[:0] + n[(2):]
       print(n)
-      
-    def  
-      
-    
-  
-  
-            
-            
-    
