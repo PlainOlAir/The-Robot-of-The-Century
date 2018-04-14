@@ -10,17 +10,12 @@ def autonomous_setup():
 def autonomous_main():
     pass
 
-async def autonomous_actions():
-    print("Autonomous action sequence started")
-    await Actions.sleep(1.0)
-    print("1 second has passed in autonomous mode")
-
 def teleop_setup():
     print("Tele-operated mode has started!")
 
 def teleop_main():
     quicc = 1
-    slow = 0.5
+    slow = 0.5 #drive
     def lift(speed):
         Robot.set_value(leftpull_motor, "duty_cycle", speed)
         Robot.set_value(rightpull_motor, "duty_cycle", -speed)
@@ -28,26 +23,28 @@ def teleop_main():
         Robot.set_value(left_motor, "duty_cycle", (-1 * leftmotor))
         Robot.set_value(right_motor, "duty_cycle", rightmotor)
     
+    #lift
     if(Gamepad.get_value("button_y") == 1):
-            lift(0.25)
+        lift(0.25)
     elif(Gamepad.get_value("button_a") == 1):
-            lift(-0.25)
-    else:
+        lift(-0.15)
+    elif(Gamepad.get_value("button_x") == 1):
         lift(0)
+    elif(Gamepad.get_value("dpad_up") == 1):
+        Robot.set_value(leftpull_motor, "duty_cycle", 0.25)
+    elif(Gamepad.get_value("dpad_down") == 1):
+        Robot.set_value(leftpull_motor, "duty_cycle", -0.15)
+    elif(Gamepad.get_value("dpad_right") == 1):
+        Robot.set_value(rightpull_motor, "duty_cycle", -0.25)
+    elif(Gamepad.get_value("dpad_left") == 1):
+        Robot.set_value(rightpull_motor, "duty_cycle", 0.15)
+    
     
         #motors will drive at 0.5 due to speed
-    if(Gamepad.get_value("dpad_up") == 1): #dpad up results in robot going forward and so fourth
-        drive(slow,slow)
-    elif(Gamepad.get_value("dpad_down") == 1):
-        drive(-slow,-slow)
-    elif(Gamepad.get_value("dpad_left") == 1):
-        drive(-slow,slow)
-    elif(Gamepad.get_value("dpad_right") == 1):
-        drive(slow,-slow)
     else:
         #these two take half the joystick value and move motors
-        Robot.set_value(left_motor, "duty_cycle", (-slow * Gamepad.get_value("joystick_left_y"))) 
-        Robot.set_value(right_motor, "duty_cycle", (slow * Gamepad.get_value("joystick_right_y")))
+        Robot.set_value(left_motor, "duty_cycle", (-1 * Gamepad.get_value("joystick_left_y"))) 
+        Robot.set_value(right_motor, "duty_cycle", (Gamepad.get_value("joystick_right_y")))
     print("smile") #end line to test if program runs all the way
     
 def Robot_decode():
