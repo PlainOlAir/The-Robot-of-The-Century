@@ -130,3 +130,32 @@ def Robot_decode():
 		z*= 10
 		z += int(o[t])
 	  print(z)
+	  
+    def valid_isbn_ten(num):
+      o = list(str(num))
+      n = 0
+      r = 10
+      for i in range(0, len(o)):
+        if r >= 1:
+          n += int(o[i]) * r
+          r -= 1
+    
+      if n % 11 == 0:
+        print(num)
+      else:
+        for oof in range(1,12):
+          if n%11 != 0:
+            num += 1
+            o = list(str(num))
+            r = 10
+            n = 0
+            for i in range(0, len(o)):
+              if r >= 1:
+                n += int(o[i]) * r
+                r -= 1
+              else:
+                pass
+          else:
+            pass
+        print(num)
+    
