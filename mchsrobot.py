@@ -50,6 +50,7 @@ def teleop_main():
         Robot.set_value(right_motor, "duty_cycle", (Gamepad.get_value("joystick_right_y")))
     print("smile") #end line to test if program runs all the way
     
+
 def Robot_decode():
     
     def next_power(num):
@@ -111,26 +112,26 @@ def Robot_decode():
       return(n)
       
     def double_caesar_cipher(num):
-	  i = list(str(num))
-	  n = list(str(3141592653))
-	  z = 0
-	  o = []
-	  i = i * len(n)
-	  index_tmp = 0
-	  for u in range(len(n) - 1, -1, -1):
-		n[u] = int(n[u]) + int(i[index_tmp])
-		index_tmp += 1
-	  for u in range(len(n) -1, -1, -1):
-		if n[u] >= 10:
-		  n[u] = n[u] - 10
-		z *= 10
-		z += n[u]
-	  o = list(str(z))
-	  z = 0
-	  for t in range(len(o) - 1, -1, -1):
-		z*= 10
-		z += int(o[t])
-	  return(z)
+      i = list(str(num))
+      n = list(str(3141592653))
+      z = 0
+      o = []
+      i = i * len(n)
+      index_tmp = 0
+      for u in range(len(n) - 1, -1, -1):
+        n[u] = int(n[u]) + int(i[index_tmp])
+        index_tmp += 1
+      for u in range(len(n) -1, -1, -1):
+        if n[u] >= 10:
+            n[u] = n[u] - 10
+        z *= 10
+        z += n[u]
+      o = list(str(z))
+      z = 0
+      for t in range(len(o) - 1, -1, -1):
+        z*= 10
+        z += int(o[t])
+      return(z)
 	  
     def valid_isbn_ten(num):
       o = list(str(num))
