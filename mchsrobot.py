@@ -4,7 +4,6 @@ leftlift = "47250928910558050271349"
 rightfront = "47260374648549928326927"
 rightback = "47248357212803989927318"
 rightlift = "47245107631008836712594"
-light = ""
 rfid = "51964702830827894976874"
 
 def next_power(num):
@@ -211,8 +210,8 @@ def teleop_main():
         Robot.set_value(rightback, "duty_cycle", 0)
     
     def lift(speed):
-        Robot.set_value(leftlift, "duty_cycle", speed)
-        Robot.set_value(rightlift, "duty_cycle", speed)
+        Robot.set_value(leftlift, "duty_cycle", 0.9 * speed)
+        Robot.set_value(rightlift, "duty_cycle", -1 * speed)
     
     if Gamepad.get_value("r_bumper") == 1 and Gamepad.get_value("l_bumper") == 1:
         stop()
