@@ -27,9 +27,12 @@ def reverse_digits(num):
   return(i)
   
 def smallest_prime_fact(num):
+  if num == 0:
+      return(0)
+    
   primes = [0] * (num + 1)
   primes[1] = 1
-  
+
   for i in range(2, num + 1):
     if (primes[i] == 0):
       primes[i] = i
@@ -79,35 +82,16 @@ def double_caesar_cipher(num):
     n[u] = int(n[u]) + int(i[index_tmp])
     index_tmp -= 1
   
-  for u in range(len(n) -1, -1, -1):
+  for u in range(0, len(n)):
     if n[u] >= 10:
         n[u] = n[u] - 10
     z *= 10
     z += n[u]
-
-  o = list(str(z))
-  ha = 0
   
-  for xd in range(len(o)-1, -1, -1):
-    ha *= 10
-    ha += int(o[xd])
-  return(ha)
+  return(z)
   
 def valid_isbn_ten(num):
-  o = list(str(num))
-  n = 0
-  r = 1
-  for i in range(len(o) - 1, -1, -1):
-    if r <= 10:
-      n += int(o[i]) * r
-      r += 1
-    print(n)
-  
-  if n % 11 == 0:
-    return(num)
-  else:
     for xd in range(0, 1000):
-      num += 1
       o = list(str(num))
       n = 0
       r = 1
@@ -117,6 +101,8 @@ def valid_isbn_ten(num):
           r += 1
       if n % 11 == 0:
         return(num)
+      else:
+        num += 1
       
       
 
@@ -177,6 +163,7 @@ def simd_four_square(num):
     imdone += int(numnumlist[ha])
   return(int(imdone))
 
+
 def autonomous_setup():
     print("Autonomous mode has started!")
     Robot.run(autonomous_actions)
@@ -191,8 +178,13 @@ async def autonomous_actions():
         Robot.set_value(leftback, "duty_cycle", i * speed)
         Robot.set_value(rightfront, "duty_cycle", speed)
         Robot.set_value(rightback, "duty_cycle", speed)
+    
     drive(0.5, -1)
-    await Actions.sleep(2)
+    await Actions.sleep(0.75)
+    drive(0, 1)
+    await Actions.sleep(0.5)
+    drive(0.5, 1)
+    await Actions.sleep(4)
     drive(0, 1)
     
 
